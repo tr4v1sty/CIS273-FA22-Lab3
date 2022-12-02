@@ -6,22 +6,23 @@ namespace MeanMode
     {
         static void Main(string[] args)
         {
-
+            
+            
         }
 
         public static bool MeanMode(int[] array)
         {
-            return computeMode(array) == computeAverage(array);
+            return ComputeMode(array) == ComputeAverage(array);
         }
 
         // TODO
-        private static double computeAverage(int[] array)
+        private static double ComputeAverage(int[] array)
         {
             return 0.0;
         }
 
         // TODO
-        private static double? computeMode(int[] array)
+        private static double? ComputeMode(int[] array)
         {
             return null;
         }
