@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace Set
 {
     public class Set<T> : ISet<T>
     {
-       
-        public int Size { get; set; }
+        HashSet<T> set;
+        public int Size => set.Count;
 
         public List<T> Elements { get; set; }
 
@@ -19,31 +20,30 @@ namespace Set
 
         public static ISet<int> Union(ISet<int> set1, ISet<int> set2)
         {
-            throw new NotImplementedException();
+            
+            throw new NotSupportedException();
         }
 
         public void Add(ISet<T> s)
         {
-            throw new NotImplementedException();
+            foreach (var thing in s)
+            {
+                set.Add(thing);
+            }
         }
 
         public void Add(T value)
         {
-            throw new NotImplementedException();
+            set.Add(value);
         }
 
         public bool Contains(T value)
         {
-            var curNode = Elements;
-            while (curNode != null)
+            if (set.Contains(value) == true)
             {
-                if (curNode.Equals(value))
-                {
-                    return true;
-                }
-                
-
+                return true;
             }
+            else
             return false;
         }
 
@@ -54,12 +54,17 @@ namespace Set
 
         public void Remove(ISet<T> s)
         {
-            throw new NotImplementedException();
+            foreach (var thing in s) 
+            {
+                set.Remove(thing);
+                    
+            }
+
         }
 
         public void Remove(T value)
         {
-            throw new NotImplementedException();
+            set.Remove(value);
         }
 
         IEnumerator IEnumerable.GetEnumerator()

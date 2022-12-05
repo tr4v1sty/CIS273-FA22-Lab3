@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace MeanMode
@@ -23,7 +24,7 @@ namespace MeanMode
             return ComputeMode(array) == ComputeAverage(array);
         }
 
-        // TODO
+        
         private static double ComputeAverage(int[] array)
         {
           double  sum = 0.0;
@@ -36,22 +37,37 @@ namespace MeanMode
             return avg;
         }
 
-        // TODO
+       
         private static double? ComputeMode(int[] array)
         {
-            double high = 0.0;
-            for (int i = 0; i < array.Length; i++)
+            // using dictionary instead
+            Dictionary<int, int> count = new Dictionary<int, int>();
+            
+            foreach (int a in array)
             {
-                array[i]++;
-               
-                if (array[i] > high)
+                
+                if (count.ContainsKey(a))
                 {
-                    high = array[i];
-                    
+                    count[a] = count[a] + 1;
                 }
 
+                else
+                {
+                    count[a] = 1;
+                }
+                   
             }
-            return high;
+            int result = int.MinValue;
+            int maximum = int.MinValue;
+            foreach (int key in count.Keys)
+            {
+                if (count[key] > maximum)
+                {
+                    maximum = count[key];
+                    result = key;
+                }
+            }
+            return result;
         }
     }
 }

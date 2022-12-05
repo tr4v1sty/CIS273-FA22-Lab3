@@ -9,7 +9,7 @@ namespace StringUtilities
     {
         public static bool IsUniqueCharacterSet(this string s)
         {
-            // shown in calss
+            // shown in class video
             var cleanString = Regex.Replace(s, @"\s+", string.Empty).ToLower();
             HashSet<char> hashset = new HashSet<char>();
 
