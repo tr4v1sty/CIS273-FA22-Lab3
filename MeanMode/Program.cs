@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MeanMode
 {
@@ -18,13 +19,31 @@ namespace MeanMode
         // TODO
         private static double ComputeAverage(int[] array)
         {
-            return 0.0;
+          double  sum = 0.0;
+          
+            for (int i = 0; i < array.Length; i++)
+            {
+                sum += array[i];
+            }
+            double avg = sum / array.Length;
+            return avg;
         }
 
         // TODO
         private static double? ComputeMode(int[] array)
         {
-            return null;
+            int high = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i]++;
+               
+                if (array[i] > high)
+                {
+                    high = array[i];
+                }
+
+            }
+            return high;
         }
     }
 }
