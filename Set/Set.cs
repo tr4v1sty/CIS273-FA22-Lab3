@@ -7,9 +7,10 @@ namespace Set
 {
     public class Set<T> : ISet<T>
     {
-        public int Size => throw new NotImplementedException();
+       
+        public int Size { get; set; }
 
-        public List<T> Elements => throw new NotImplementedException();
+        public List<T> Elements { get; set; }
 
         public static ISet<int> Intersection(ISet<int> set1, ISet<int> set2)
         {
@@ -33,7 +34,17 @@ namespace Set
 
         public bool Contains(T value)
         {
-            throw new NotImplementedException();
+            var curNode = Elements;
+            while (curNode != null)
+            {
+                if (curNode.Equals(value))
+                {
+                    return true;
+                }
+                
+
+            }
+            return false;
         }
 
         public IEnumerator<T> GetEnumerator()

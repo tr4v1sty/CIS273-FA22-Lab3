@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
@@ -8,22 +9,20 @@ namespace StringUtilities
     {
         public static bool IsUniqueCharacterSet(this string s)
         {
-            // same as we did last time
-            // check if string is empty
-            // does not check spaces and letters
-            for (int i = 0; i < s.Length; i++)
+            // shown in calss
+            var cleanString = Regex.Replace(s, @"\s+", string.Empty).ToLower();
+            HashSet<char> hashset = new HashSet<char>();
+
+            foreach (var letter in cleanString)
             {
-                for (int j = i + 1; j < s.Length; j++)
+                if (hashset.Contains(letter))
                 {
-                    if (s[i] == s[j])
-                        return false;
+                    return false;
                 }
+                hashset.Add(letter);
             }
             return true;
-                
-            // need to check for duplicate letters and remove spaces
-
-          
+           
         }
         
     }

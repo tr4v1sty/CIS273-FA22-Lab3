@@ -7,8 +7,15 @@ namespace MeanMode
     {
         static void Main(string[] args)
         {
+            int[] numbers = new int[5];
+            numbers[0] = 4;
+            numbers[1] = 4;
+            numbers[2] = 4;
+            numbers[3] = 6;
+            numbers[4] = 2;
+            Console.WriteLine(MeanMode(numbers));
             
-            
+
         }
 
         public static bool MeanMode(int[] array)
@@ -32,7 +39,7 @@ namespace MeanMode
         // TODO
         private static double? ComputeMode(int[] array)
         {
-            int high = 0;
+            double high = 0.0;
             for (int i = 0; i < array.Length; i++)
             {
                 array[i]++;
@@ -40,6 +47,7 @@ namespace MeanMode
                 if (array[i] > high)
                 {
                     high = array[i];
+                    
                 }
 
             }
