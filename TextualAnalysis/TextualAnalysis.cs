@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -9,7 +10,7 @@ namespace TextualAnalysis
 {
     public class TextualAnalysis
     {
-        public static string stopWordFilePath = "../../../Data/test.txt";
+        public static string stopWordFilePath = "../../../Data/stop-words.txt";
 
         public TextualAnalysis()
         {
@@ -19,27 +20,38 @@ namespace TextualAnalysis
         public static Dictionary<string, int> ComputeWordFrequencies(string s, bool ignoreStopWords = false)
         {
             var wordCounts = new Dictionary<string, int>();
+            string[] stop = GetStopWordsFromFile(stopWordFilePath);
             s = "all the faith he had had had had no effect.";
-            
-            
+            HashSet<string> wordset = new HashSet<string>();
+            foreach (string word in stop)
+            {
+                wordset.Add(word);
+            }
             // remove punctuation
-
+            var cleanset = Regex.Replace(s, @"[^\w\s]", "");
             // split the string into words (filtering out the empty strings)
-
-
-            return wordCounts;
+            var words = cleanset.ToLower().Split().Where(s => s != "");
+            foreach (var word in words)
+            {
+                    if (wordCounts.ContainsKey(word))
+                    {
+                        wordCounts[word]++;
+                    }
+                    else
+                    {
+                        wordCounts.Add(word, 1);
+                    }   
+            }
+            return wordCounts;  
         }
-
 
         public static Dictionary<string, int> ComputeWordFrequenciesFromFile(string path, bool ignoreStopWords = false)
         {
-            // read in the file
-            
-            // call the other method
+            string text = System.IO.File.ReadAllText(path);
 
-            // return the result of the other method
-            throw new NotImplementedException();
-            
+            return ComputeWordFrequencies(text, ignoreStopWords);
+
+   
         }
 
         private static string[] GetStopWordsFromFile(string path)
