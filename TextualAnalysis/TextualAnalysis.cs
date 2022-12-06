@@ -21,7 +21,7 @@ namespace TextualAnalysis
         {
             var wordCounts = new Dictionary<string, int>();
             string[] stop = GetStopWordsFromFile(stopWordFilePath);
-            s = "all the faith he had had had had no effect.";
+            // THE SENTENCE THAT WAS HERE WAS MADE A VAR AND WAS KILLING ALL THE TESTS
             HashSet<string> wordset = new HashSet<string>();
             foreach (string word in stop)
             {
@@ -35,7 +35,6 @@ namespace TextualAnalysis
             {
                 if (ignoreStopWords == true && stop.Contains(word) == true)
                 {
-                   
                     continue;
                 }
                 else
@@ -49,9 +48,6 @@ namespace TextualAnalysis
                     { 
                         wordCounts.Add(word,1);
                     }
-
-                   
-
                 }
                 
             }
