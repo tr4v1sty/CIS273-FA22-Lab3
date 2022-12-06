@@ -33,14 +33,27 @@ namespace TextualAnalysis
             var words = cleanset.ToLower().Split().Where(s => s != "");
             foreach (var word in words)
             {
+                if (ignoreStopWords == true && stop.Contains(word) == true)
+                {
+                   
+                    continue;
+                }
+                else
+                {
                     if (wordCounts.ContainsKey(word))
                     {
                         wordCounts[word]++;
                     }
+
                     else
-                    {
-                        wordCounts.Add(word, 1);
-                    }   
+                    { 
+                        wordCounts.Add(word,1);
+                    }
+
+                   
+
+                }
+                
             }
             return wordCounts;  
         }
@@ -48,10 +61,9 @@ namespace TextualAnalysis
         public static Dictionary<string, int> ComputeWordFrequenciesFromFile(string path, bool ignoreStopWords = false)
         {
             string text = System.IO.File.ReadAllText(path);
-
-            return ComputeWordFrequencies(text, ignoreStopWords);
-
-   
+            
+            
+                return ComputeWordFrequencies(text);
         }
 
         private static string[] GetStopWordsFromFile(string path)
