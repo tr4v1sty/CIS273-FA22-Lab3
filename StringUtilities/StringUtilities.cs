@@ -9,7 +9,6 @@ namespace StringUtilities
     {
         public static bool IsUniqueCharacterSet(this string s)
         {
-            
             var cleanString = Regex.Replace(s, @"\s+", string.Empty).ToLower();
             HashSet<char> hashset = new HashSet<char>();
 
@@ -21,9 +20,7 @@ namespace StringUtilities
                 }
                 hashset.Add(letter);
             }
-            return true;
-           
+            return true; 
         }
-        
     }
 }

@@ -61,6 +61,7 @@ namespace MeanMode
             int maximum = int.MinValue;
             foreach (int key in count.Keys)
             {
+                // needed ='s 
                 if (count[key] >= maximum)
                 {
                     maximum = count[key];

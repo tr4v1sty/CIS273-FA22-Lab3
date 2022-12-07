@@ -25,7 +25,7 @@ namespace TextualAnalysis
             HashSet<string> wordset = new HashSet<string>();
             foreach (string word in stop)
             {
-                wordset.Add(word);
+               wordset.Add(word);
             }
             // remove punctuation
             var cleanset = Regex.Replace(s, @"[^\w\s]", "");
@@ -33,20 +33,21 @@ namespace TextualAnalysis
             var words = cleanset.ToLower().Split().Where(s => s != "");
             foreach (var word in words)
             {
+                //check and see if its a stop word and loops till done
                 if (ignoreStopWords == true && stop.Contains(word) == true)
                 {
                     continue;
                 }
+                // adds to word count and adds the word as a variable
                 else
                 {
                     if (wordCounts.ContainsKey(word))
                     {
-                        wordCounts[word]++;
+                     wordCounts[word]++;
                     }
-
                     else
                     { 
-                        wordCounts.Add(word,1);
+                     wordCounts.Add(word,1);
                     }
                 }
                 
@@ -58,8 +59,16 @@ namespace TextualAnalysis
         {
             string text = System.IO.File.ReadAllText(path);
             
-            
+                // boolean value for ignorewords
+                if(ignoreStopWords == true)
+                {
+                     return ComputeWordFrequencies(text,true);
+                }
+                else
+                 {
                 return ComputeWordFrequencies(text);
+                 }
+
         }
 
         private static string[] GetStopWordsFromFile(string path)

@@ -15,8 +15,6 @@ namespace Set
             set = new HashSet<T>();
         }
         public int Size => set.Count;
-
-
         // get set did not work for elements :(
         // create a list of elements to pull from
         public List<T> Elements
@@ -31,7 +29,6 @@ namespace Set
                 return list;
             }
         }
-
         public static ISet<int> Intersection(ISet<int> set1, ISet<int> set2)
         {
             Set<int> newSet = new Set<int>();
@@ -48,7 +45,6 @@ namespace Set
             }
             return newSet;
         }
-
         public static ISet<int> Union(ISet<int> set1, ISet<int> set2)
         {
             // add all elements to a set
